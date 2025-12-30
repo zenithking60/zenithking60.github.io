@@ -125,35 +125,97 @@ color: #00ff66;
 }
 
 /* ===== FORM ===== */
-form {
-max-width: 600px;
-margin: 40px auto 0;
+/* ===== FORM RESTYLED ===== */
+.gaming-form {
+    max-width: 600px;
+    margin: 40px auto;
+    background: rgba(10, 10, 10, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #00ff6622;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
 }
 
 input, textarea {
-width: 100%;
-padding: 15px;
-margin: 10px 0;
-background: #111;
-border: 1px solid #00ff6633;
-border-radius: 5px;
-color: #fff;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background: #111;
+    border: 1px solid #00ff6633;
+    border-radius: 5px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #00ff66;
+    box-shadow: 0 0 10px #00ff6633;
+    background: #1a1a1a;
+}
+
+/* Style des Checkboxes */
+.checkbox-section {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.checkbox-section p {
+    text-align: left;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #00ff66;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 20px;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+}
+
+.custom-checkbox input {
+    display: none; /* On cache la case moche par défaut */
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00ff66;
+    border-radius: 4px;
+    margin-right: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+.custom-checkbox input:checked + .checkmark {
+    background: #00ff66;
+}
+
+.custom-checkbox input:checked + .checkmark:after {
+    content: "✔";
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
 }
 
 button {
-width: 100%;
-padding: 15px;
-background: #00ff66;
-color: #000;
-font-size: 18px;
-font-weight: bold;
-border: none;
-border-radius: 6px;
-cursor: pointer;
-}
-
-button:hover {
-box-shadow: 0 0 15px #00ff66;
+    margin-top: 20px;
 }
 
 /* ===== FOOTER ===== */
@@ -236,38 +298,35 @@ performer et surtout passer d’excellents moments ensemble.
 
 <!-- RECRUITMENT -->
 <section id="recrutement">
-<h2>Recrutement</h2>
-<p>
-Tu cherches une team sérieuse, conviviale et motivée ?
-Zénith King t’attend.
-</p>
+    <h2>Rejoindre l'élite</h2>
+    <form action="https://api.web3forms.com/submit" method="POST" class="gaming-form">
+        <input type="hidden" name="access_key" value="36081463-ddd5-4ec0-9050-cf01fff9b42e">
+        
+        <div class="form-group">
+            <input type="text" name="pseudo" placeholder="Pseudo" required>
+            <input type="number" name="age" placeholder="Âge" required>
+        </div>
 
-<form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="36081463-ddd5-4ec0-9050-cf01fff9b42e">
-  <input type="text" name="name" required>
-  <input type="email" name="email" required>
-  <textarea name="message" required></textarea>
-  <button type="submit">Submit</button>
-</form>
-  
-<form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="36081463-ddd5-4ec0-9050-cf01fff9b42e">
-<input type="text" placeholder="Pseudo" required>
-<input type="number" placeholder="Âge" required>
-<p>Quels jeux préférez-vous ? (plusieurs choix possibles)</p>
+        <input type="email" name="email" placeholder="Email de contact" required>
 
-<label>
-    <input type="checkbox" name="jeux[]" value="Call of Duty"> Call of Duty
-</label>
+        <div class="checkbox-section">
+            <p>Tes jeux de prédilection :</p>
+            <div class="checkbox-group">
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="jeux[]" value="Call of Duty">
+                    <span class="checkmark"></span> Call of Duty
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="jeux[]" value="FIFA">
+                    <span class="checkmark"></span> FIFA / FC 25
+                </label>
+            </div>
+        </div>
 
-<br>
-
-<label>
-    <input type="checkbox" name="jeux[]" value="FIFA"> FIFA / EA Sports FC
-</label>
-<textarea rows="5" placeholder="Pourquoi rejoindre Zénith King ?"></textarea>
-<button type="submit">Envoyer ma candidature</button>
-</form>
+        <textarea name="motivation" rows="5" placeholder="Pourquoi rejoindre Zénith King ?" required></textarea>
+        
+        <button type="submit">Envoyer ma candidature</button>
+    </form>
 </section>
 
 <!-- FOOTER -->
@@ -277,4 +336,5 @@ Zénith King t’attend.
 
 </body>
 </html>
+
 
